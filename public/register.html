@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        .form {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: x-large;
+            color:black;
+            text-align: center;
+            margin: 0 auto;
+            padding: 20px;
+            width: 50%;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            border-top: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-size: 25px;
+            background-image: url('https://img.freepik.com/premium-photo/horizontal-poster-background-modern-minimalist-style-with-dynamic-liquid-gradient-shapes_481527-6547.jpg');
+        }
+        body {
+            background-color: antiquewhite;
+            background-image: url('https://png.pngtree.com/png-vector/20190330/ourmid/pngtree-vector-abstract-light-blue-shining-background-with-glossy-wavy-e-png-image_895235.jpg');
+        }
+        #submit-button {
+            text-align: center;
+            color:black;
+        }
+        #submit-button:hover {
+            color: white;
+            background-color: rgb(0, 183, 255);
+        }
+        .label {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form">
+        <form id="registerForm">
+            <table id="table">
+                <thead style="font-size: 25px;">Create New Account</thead>
+                <tr>
+                    <td><label class="label" for="name">Name</label></td>
+                    <td><input type="text" placeholder="Name" id="name" name="name" required></td>
+                </tr>
+                <tr>
+                    <td><label class="label" for="username">Username</label></td>
+                    <td><input type="text" placeholder="Username" id="username" name="username" required></td>
+                </tr>
+                <tr>
+                    <td><label class="label" for="email">Email</label></td>
+                    <td><input type="email" placeholder="Email" id="email" name="email" required></td>
+                </tr>
+                <tr>
+                    <td><label class="label" for="password">Password</label></td>
+                    <td><input type="password" placeholder="Password" id="password" name="password" required></td>
+                </tr>
+                <tr>
+                    <td><label class="label" for="re-password">Confirm Password</label></td>
+                    <td><input type="password" placeholder="Confirm Password" id="re-password" name="re-password" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button type="submit" id="submit-button">Register</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const name = document.getElementById("name").value;
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const rePassword = document.getElementById("re-password").value;
+    
+            if (password !== rePassword) {
+                alert("Passwords do not match");
+                return;
+            }
+    
+            const data = { username, password }; // Sending only username and password
+            const response = await fetch("/api/auth/register", { // Corrected URL
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+    
+            const message = await response.text();
+            alert(message);
+    
+            if (response.ok) {
+                window.location.href = "/login"; 
+            }
+        });
+    </script>
+    
+</body>
+</html>

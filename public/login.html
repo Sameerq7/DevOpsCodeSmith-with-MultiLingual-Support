@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        #submit-button{
+            text-align: center;
+        }
+        #submit-button:hover{
+            background-color:rgb(10, 190, 245);
+            color:white;
+        }
+        .login{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: x-large;
+            color:black;
+            text-align: center;
+            margin: 0 auto;
+            padding: 20px;
+            width: 50%;
+            border: 1px solid #ccc; 
+            border-radius: 10px;
+            border-top: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: rgb(121, 199, 255); 
+            background-image: url('https://t4.ftcdn.net/jpg/08/23/64/11/360_F_823641135_Z94bLgJZPSIVxJ6gul1XZbJXBJpSNEWi.jpg');
+        }
+        body{
+            background-color: aliceblue;
+            background-image:url('https://t3.ftcdn.net/jpg/08/65/20/92/360_F_865209260_ZieXjdormCdPS9GwWlh8mlX9VhELvrQn.jpg');
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .reg{
+            font-size: 15px;
+        }
+        .input{
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login">
+        <form id="loginForm">
+            <table>
+                <th style="text-align: center;">Login Form</th>
+                <tr>
+                   <td>
+                    Username: <input type="text" class="input" id="username" name="username" placeholder="Enter your Username" required>
+                   </td> 
+                </tr>
+                <tr>
+                    <td>Password: <input type="password" class="input" id="password" name="password" placeholder="Enter your Password" required></td>
+                </tr>
+                <tr>
+                    <td><button type="submit" id="submit-button">Submit</button></td>
+                </tr>
+                <tr>
+                    <td><div id="message"></div></td>
+                </tr>
+            </table>
+            <div class="reg">
+                <h5>Don't Have an Account?</h5>
+                <a href="register.html"><strong><h3>Register</h3></strong></a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            const response = await fetch("/api/auth/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+    
+            const messageContainer = document.getElementById("message"); // Element for feedback
+            messageContainer.textContent = ""; // Clear previous messages
+    
+            if (response.ok) {
+                window.location.href = "/index"; 
+            } else {
+                const errorData = await response.json();
+                messageContainer.textContent = errorData.error || 'Login failed. Please try again.';
+                messageContainer.style.color = 'red'; // Change text color to red for errors
+            }
+        });
+    </script>
+    
+</body>
+</html>
