@@ -29,15 +29,8 @@ DevOpsCodeSmith is a code generator that creates code snippets based on your pro
 2. Navigate to the project directory:
    ```bash
    cd DevOpsCodeSmith-with-MultiLingual-Support
-   ```
 
-3. Create a `requirements.txt` file to specify your dependencies. For example:
-   ```bash
-   express
-   nodemon
-   ```
-
-4. Install the dependencies listed in `requirements.txt`:
+3. Install the dependencies listed in `requirements.txt`:
    ```bash
    npm install
    ```
