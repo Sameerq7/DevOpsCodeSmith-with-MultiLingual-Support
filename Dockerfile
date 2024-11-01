@@ -20,4 +20,6 @@ COPY . .
 EXPOSE 3000
 
 # Command to run your app
-CMD ["nodemon", "server.js"]
+CMD ["npm", "start"]
+
+#docker run -p 3000:3000 sameerq7/devopscodesmith:latest

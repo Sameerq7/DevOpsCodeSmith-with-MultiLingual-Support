@@ -1,13 +1,16 @@
 import express from 'express';
-import bcrypt from 'bcrypt';
 
 const router = express.Router();
 const users = []; // Temporary user storage; replace with a database in production.
 
-// Pre-defined default user
+// Pre-defined default user with simple hashing
 const defaultUsername = "9121sameer@gmail.com";
-const defaultPassword = await bcrypt.hash("sameer", 10);
+const defaultPassword = `hashed_sameer`; // Replace bcrypt hash with a static placeholder
 users.push({ username: defaultUsername, password: defaultPassword });
+
+// Placeholder hash function
+const hashPassword = (password) => `hashed_${password}`;
+const comparePasswords = (password, hashedPassword) => hashedPassword === `hashed_${password}`;
 
 router.post('/register', async (req, res) => {
     const { username, password } = req.body;
@@ -20,7 +23,7 @@ router.post('/register', async (req, res) => {
         return res.status(409).json({ error: 'Username already exists.' });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = hashPassword(password); // Use placeholder hash function
     users.push({ username, password: hashedPassword });
     res.status(201).json({ message: 'User registered successfully.' });
 });
@@ -29,7 +32,7 @@ router.post('/login', async (req, res) => {
     const { username, password } = req.body;
     const user = users.find((user) => user.username === username);
 
-    if (!user || !(await bcrypt.compare(password, user.password))) {
+    if (!user || !comparePasswords(password, user.password)) {
         return res.status(401).json({ error: 'Invalid username or password.' });
     }
 
