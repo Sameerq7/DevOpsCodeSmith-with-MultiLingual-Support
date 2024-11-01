@@ -1,0 +1,21 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  DOCKER_REGISTRY: registry.gitlab.com
+  PROJECT_PATH: shaik-consulting-and-innovations/devopscodesmith
+
+build:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker build -t $DOCKER_REGISTRY/$PROJECT_PATH:latest .
+    - docker push $DOCKER_REGISTRY/$PROJECT_PATH:latest
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying Docker image..."
