@@ -10,15 +10,15 @@ import cors from 'cors';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 // CORS setup for cross-origin requests
 app.use(cors({
-    origin: ['https://devopscodesmith-with-multilingual-support.onrender.com', 'http://localhost:3000'],
+    origin: ['https://devopscodesmith-with-multilingual.onrender.com/', 'http://localhost:3000'],
     methods: ['GET', 'POST', 'OPTIONS'],
     credentials: true
 }));
 
+const PORT = process.env.PORT || 3000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
