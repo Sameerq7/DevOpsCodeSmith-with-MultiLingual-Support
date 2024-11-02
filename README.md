@@ -39,7 +39,7 @@ DevOpsCodeSmith is a code generator that creates code snippets based on your pro
 
 1. Start the server using nodemon:
    ```bash
-   nodemon server.js
+   npm start
    ```
 
 2. Open your web browser and go to `http://localhost:3000` (or the port specified in your `server.js` file) to run the application.
