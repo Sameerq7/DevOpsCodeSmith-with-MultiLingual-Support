@@ -5,11 +5,20 @@ import { fileURLToPath } from 'url';
 import session from 'express-session';
 import authRoutes from './routes/auth.js';
 import codeGenerationRoutes from './routes/codeGeneration.js';
+import cors from 'cors';
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// CORS setup for cross-origin requests
+app.use(cors({
+    origin: ['https://devopscodesmith-with-multilingual-support.onrender.com', 'http://localhost:3000'],
+    methods: ['GET', 'POST', 'OPTIONS'],
+    credentials: true
+}));
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
