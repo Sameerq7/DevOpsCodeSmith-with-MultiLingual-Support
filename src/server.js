@@ -36,6 +36,8 @@ app.use(
     })
 );
 
+app.use(express.static(path.join(__dirname, '../static')));
+
 app.use(express.static(path.join(__dirname, '../public')));
 
 // Middleware to check if user is logged in
