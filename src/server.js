@@ -66,7 +66,7 @@ app.get('/register', (req, res) => {
 
 // API routes
 app.use('/api/auth', authRoutes);
-app.use('/api/code', isAuthenticated, codeGenerationRoutes);
+app.use('/api/code',  codeGenerationRoutes);
 
 app.listen(PORT, () => {
     console.log(`Please navigate to http://localhost:${PORT}/login to access the application.`);
