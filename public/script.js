@@ -4,7 +4,7 @@ document.getElementById("generateCodeBtn").addEventListener("click", async () =>
     codeMirrorOutput.setValue(""); // Clear the previous output
 
     try {
-        const response = await fetch("http://localhost:3000/api/code/generate-code", {
+        const response = await fetch("/api/code/generate-code", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ problem: problemStatement })
