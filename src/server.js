@@ -13,10 +13,12 @@ const app = express();
 
 // CORS setup for cross-origin requests
 app.use(cors({
-    origin: ['https://devopscodesmith-with-multilingual.onrender.com/', 'http://localhost:3000'],
+    origin: ['https://devopscodesmith-with-multilingual-support.onrender.com', 'http://localhost:3000'],
     methods: ['GET', 'POST', 'OPTIONS'],
     credentials: true
 }));
+
+app.options('*', cors()); // Preflight handling
 
 const PORT = process.env.PORT || 3000;
 
@@ -30,7 +32,7 @@ app.use(
         secret: 'your_secret_key', // Replace with a secure secret
         resave: false,
         saveUninitialized: true,
-        cookie: { secure: false } // Set to true if using HTTPS
+        cookie: { secure: process.env.NODE_ENV === 'production' } // True if using HTTPS
     })
 );
 
