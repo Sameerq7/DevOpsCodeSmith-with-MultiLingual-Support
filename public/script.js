@@ -1,6 +1,7 @@
 document.getElementById("generateCodeBtn").addEventListener("click", async () => {
     const problemStatement = document.getElementById("problemStatement").value;
-    document.getElementById("spinner").style.display = "block";
+    const spinner = document.getElementById("spinner");
+    spinner.style.display = "block"; // Show spinner
     codeMirrorOutput.setValue(""); // Clear the previous output
 
     // Determine base URL based on environment
@@ -25,14 +26,19 @@ document.getElementById("generateCodeBtn").addEventListener("click", async () =>
     } catch (error) {
         codeMirrorOutput.setValue("Network error ");
     } finally {
-        document.getElementById("spinner").style.display = "none";
+        spinner.style.display = "none"; // Hide spinner
     }
 });
 
 document.getElementById("copyCodeBtn").addEventListener("click", () => {
     const code = codeMirrorOutput.getValue();
+    const copyButton = document.getElementById("copyCodeBtn");
     if (code) {
         navigator.clipboard.writeText(code).then(() => {
+            copyButton.innerHTML = '<i class="bi bi-check-circle"></i>'; // Change to checkmark
+            setTimeout(() => {
+                copyButton.innerHTML = 'Copy to Clipboard'; // Reset back to original text
+            }, 2000); // Change back after 2 seconds
             console.log("Code copied to clipboard!");
         }).catch(err => {
             alert("Failed to copy code: " + err);

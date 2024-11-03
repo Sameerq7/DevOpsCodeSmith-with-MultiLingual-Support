@@ -2,27 +2,53 @@
 body {
     background-color: #f5f5f5;
     font-family: Arial, sans-serif;
-    height: 100vh; /* Full height of the viewport */
+    height: 100vh;
     margin: 0;
 }
+
+.d-flex {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+button {
+    flex: 1;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+.btn-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+.form-label {
+    font-size: 1.25rem; /* Adjust font size as needed (1.25rem is between h3 and h4) */
+    color: #333; /* Darker font color */
+}
+
+.btn-social i {
+    margin-right: 5px; /* Space between icon and text */
+}
+
 
 .container {
     max-width: 800px;
     margin-top: 20px;
+    margin-bottom: 0; /* Remove bottom margin */
     background-color: #ffffff;
-    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease-in-out;
-    height: calc(100% - 40px); /* Adjust height to fill remaining space */
     display: flex;
     flex-direction: column;
 }
 
 /* Container animation */
-.container:hover {
-    transform: scale(1.02);
-}
 
 /* Heading */
 h2 {
@@ -34,30 +60,27 @@ h2 {
 
 /* Form elements */
 #problemStatement {
-    font-size: 1.1rem;
-    padding: 10px;
+    font-size: 1.2rem;
     transition: background-color 0.3s ease;
+    resize: vertical; /* Allows the user to resize vertically */
+    width: 100%;
 }
 
 #problemStatement:focus {
-    background-color: #e6f7ff;
+    background-color: white;
 }
 
 /* Button styles */
 #generateCodeBtn, #copyCodeBtn {
-    padding: 10px 20px;
     font-size: 1rem;
-    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 #generateCodeBtn:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
+    background-color: #22f013;
 }
 
 #copyCodeBtn:hover {
-    background-color: #5a6268;
-    transform: translateY(-2px);
+    background-color: #0ae8ec;
 }
 
 /* Code Output */
@@ -66,10 +89,9 @@ h2 {
 }
 
 .CodeMirror {
-    border: 1px solid #ced4da;
     border-radius: 4px;
     height: 100%;
-    min-height: 300px;
+    min-height: 400px; /* Increased minimum height */
     flex-grow: 1;
     overflow: auto;
 }
@@ -105,54 +127,49 @@ h2 {
 .btn-primary::after, .btn-secondary::after {
     content: '';
     position: absolute;
-    border-radius: 50%;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.4);
     top: 50%;
     left: 50%;
-    transform: scale(0);
-    transition: transform 0.4s ease, opacity 0.8s ease;
-    opacity: 0;
-    pointer-events: none;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s;
+    z-index: 0;
 }
 
-.btn-primary:active::after, .btn-secondary:active::after {
-    transform: scale(3);
-    opacity: 1;
-    transition: transform 0s, opacity 0.8s;
+.btn-primary:hover::after, .btn-secondary:hover::after {
+    transform: translate(-50%, -50%) scale(1);
 }
 
-/* Responsive Adjustments */
-@media (max-width: 600px) {
-    .container {
-        padding: 15px;
-    }
-
-    #problemStatement {
-        font-size: 1rem;
-    }
-
-    #generateCodeBtn, #copyCodeBtn {
-        font-size: 0.9rem;
-        padding: 8px 15px;
-    }
+/* Footer Styles */
+footer {
+    padding: 10px; /* Reduced padding */
+    background-color: #f8f9fa;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 0; /* Ensure no extra margin on top */
+    position: relative; /* Ensure it's positioned correctly */
 }
 
-/* Spinner Animation */
+footer .social-icons {
+    margin-bottom: 15px;
+}
+
+footer .social-icons .btn {
+    margin-right: 10px;
+}
+
+footer .text-black {
+    color: #000;
+}
 .spinner {
-    display: none;
-    border: 4px solid #f3f3f3;
+    border: 4px solid rgba(0, 0, 0, 0.1);
     border-top: 4px solid #007bff;
     border-radius: 50%;
     width: 40px;
     height: 40px;
     animation: spin 1s linear infinite;
-    margin: 0 auto;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 40%;
+    margin: 20px auto; /* Center the spinner */
 }
 
 @keyframes spin {
