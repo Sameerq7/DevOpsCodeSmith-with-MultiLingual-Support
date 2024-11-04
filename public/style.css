@@ -1,11 +1,29 @@
-/* General page layout */
+/* Apply background image to the entire page */
 body {
-    background-color: #f5f5f5;
-    font-family: Arial, sans-serif;
-    height: 100vh;
+    background-image: url('../static/background_image.jpg');
+    background-size: cover; /* Ensure the image covers the entire area */
+    background-position: center;
+    background-repeat: no-repeat;
     margin: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
+/* Main content container */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent for contrast */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    position: relative;
+}
+
+/* Form and Button Styles */
 .d-flex {
     display: flex;
     justify-content: flex-start;
@@ -19,6 +37,7 @@ button {
 button:hover {
     transform: translateY(-2px);
 }
+
 .btn-social {
     display: flex;
     align-items: center;
@@ -26,77 +45,34 @@ button:hover {
     padding: 10px 20px;
     font-size: 1rem;
 }
+
 .form-label {
-    font-size: 1.25rem; /* Adjust font size as needed (1.25rem is between h3 and h4) */
-    color: #333; /* Darker font color */
+    font-size: 1.25rem;
+    color: #333;
 }
 
 .btn-social i {
-    margin-right: 5px; /* Space between icon and text */
+    margin-right: 5px;
 }
 
-
-.container {
-    max-width: 800px;
-    margin-top: 20px;
-    margin-bottom: 0; /* Remove bottom margin */
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Container animation */
-
-/* Heading */
-h2 {
-    font-weight: bold;
-    color: #333333;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-/* Form elements */
-#problemStatement {
-    font-size: 1.2rem;
-    transition: background-color 0.3s ease;
-    resize: vertical; /* Allows the user to resize vertically */
-    width: 100%;
-}
-
-#problemStatement:focus {
-    background-color: white;
-}
-
-/* Button styles */
-#generateCodeBtn, #copyCodeBtn {
-    font-size: 1rem;
-}
-
-#generateCodeBtn:hover {
-    background-color: #22f013;
-}
-
-#copyCodeBtn:hover {
-    background-color: #0ae8ec;
-}
-
-/* Code Output */
+/* Generated Code Container */
 #codeOutput {
     display: none;
+}
+
+.code-container {
+    height: 100%;
+    overflow: auto;
 }
 
 .CodeMirror {
     border-radius: 4px;
     height: 100%;
-    min-height: 400px; /* Increased minimum height */
+    min-height: 400px;
     flex-grow: 1;
     overflow: auto;
 }
 
-/* CodeMirror Theme Customizations */
 .cm-s-material-darker {
     background-color: #263238;
     color: #c3e88d;
@@ -108,22 +84,97 @@ h2 {
 .cm-number { color: #f78c6c; }
 .cm-variable { color: #82aaff; }
 
-/* Hover & Animation for Buttons */
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
+/* Footer Styles */
+footer {
+    background-image: url('../static/background_image.jpg'); /* Set the same background image */
+    background-size: cover; /* Cover the entire footer */
+    background-position: center; /* Center the image */
+    color: black; /* Black font color */
+    padding: 20px;
     position: relative;
-    overflow: hidden;
+    z-index: 1;
 }
 
-.btn-secondary {
-    background-color: #6c757d;
-    border-color: #6c757d;
-    position: relative;
-    overflow: hidden;
+/* Animated Text */
+.animated-text {
+    display: inline-block;
+}
+
+.animated-text span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.6s forwards;
+}
+
+/* Space class for maintaining gaps between words */
+.space {
+    display: inline-block;
+    width: 1ch; /* Adjust this width based on your font size */
+}
+
+/* Fade in animation for text */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Simple black text effect */
+footer p, footer a, footer strong {
+    color: #000; /* Solid black text */
+    font-family: 'Courier New', Courier, monospace; /* Dynamic font style */
+}
+
+/* Social Icon Animation */
+.social-icons a {
+    display: inline-block;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icons a:hover {
+    transform: scale(1.2); /* Scale on hover */
+    color: #fff;
+}
+
+/* Pulse animation for footer text */
+@keyframes pulse {
+    0%, 100% {
+        /* Removed glow effect */
+    }
+}
+
+footer p, footer a, footer strong {
+    animation: pulse 2s infinite; /* Apply pulse animation */
+}
+
+/* Loading Spinner */
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #007bff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* Button Ripple Effect */
+.btn-primary, .btn-secondary {
+    position: relative;
+    overflow: hidden;
+}
+
 .btn-primary::after, .btn-secondary::after {
     content: '';
     position: absolute;
@@ -140,39 +191,4 @@ h2 {
 
 .btn-primary:hover::after, .btn-secondary:hover::after {
     transform: translate(-50%, -50%) scale(1);
-}
-
-/* Footer Styles */
-footer {
-    padding: 10px; /* Reduced padding */
-    background-color: #f8f9fa;
-    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
-    margin-top: 0; /* Ensure no extra margin on top */
-    position: relative; /* Ensure it's positioned correctly */
-}
-
-footer .social-icons {
-    margin-bottom: 15px;
-}
-
-footer .social-icons .btn {
-    margin-right: 10px;
-}
-
-footer .text-black {
-    color: #000;
-}
-.spinner {
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    border-top: 4px solid #007bff;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
-    margin: 20px auto; /* Center the spinner */
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
 }

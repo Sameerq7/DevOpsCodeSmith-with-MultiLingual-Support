@@ -47,3 +47,33 @@ document.getElementById("copyCodeBtn").addEventListener("click", () => {
         alert("No code to copy.");
     }
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const animatedTextElement = document.querySelector('.animated-text');
+    const text = animatedTextElement.getAttribute('data-text');
+
+    // Function to set up the animation
+    const setupAnimation = () => {
+        // Split text into characters, including spaces
+        animatedTextElement.innerHTML = text.split('').map(char => 
+            char === ' ' ? '<span class="space"> </span>' : `<span>${char}</span>`
+        ).join('');
+
+        const spans = animatedTextElement.querySelectorAll('span, .space');
+        spans.forEach((span, index) => {
+            span.style.animationDelay = `${index * 0.05}s`; // Adjust timing here for speed
+        });
+    };
+
+    // Function to reset the animation
+    const resetAnimation = () => {
+        animatedTextElement.innerHTML = ''; // Clear the content
+        setupAnimation(); // Re-setup the animation
+    };
+
+    setupAnimation(); // Initial setup
+
+    // Set interval for continuous animation
+    setInterval(resetAnimation, text.length * 50 + 1000); // Adjust interval based on text length
+});
+
+
