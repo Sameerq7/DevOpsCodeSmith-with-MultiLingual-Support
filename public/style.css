@@ -1,6 +1,6 @@
 /* Apply background image to the entire page */
 body {
-    background-image: url('../static/background_image.jpg');
+    background-image: url('/background_image.jpg');
     background-size: cover; /* Ensure the image covers the entire area */
     background-position: center;
     background-repeat: no-repeat;
@@ -86,7 +86,7 @@ button:hover {
 
 /* Footer Styles */
 footer {
-    background-image: url('../static/background_image.jpg'); /* Set the same background image */
+    background-image: url('/background_image.jpg'); /* Set the same background image */
     background-size: cover; /* Cover the entire footer */
     background-position: center; /* Center the image */
     color: black; /* Black font color */
