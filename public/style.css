@@ -9,6 +9,17 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center;
+}
+#generateCodeBtn:hover {
+    background-color: green; /* Change to green on hover */
+    color: white; /* Ensure text remains white */
+}
+
+#copyCodeBtn:hover {
+    background-color: rgb(0, 255, 255); /* Change to blue on hover */
+    color: white; /* Ensure text remains white */
 }
 
 /* Main content container */
@@ -72,7 +83,6 @@ button:hover {
     flex-grow: 1;
     overflow: auto;
 }
-
 .cm-s-material-darker {
     background-color: #263238;
     color: #c3e88d;
