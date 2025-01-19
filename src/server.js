@@ -71,5 +71,5 @@ app.use('/api/auth', authRoutes);
 app.use('/api/code',  codeGenerationRoutes);
 
 app.listen(PORT, () => {
-    console.log(`Please navigate to http://localhost:${PORT}/login to access the application.`);
+    console.log(`Please navigate to http://localhost:${PORT} to access the application.`);
 });
