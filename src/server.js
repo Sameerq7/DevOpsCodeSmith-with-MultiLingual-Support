@@ -13,7 +13,7 @@ const app = express();
 
 // CORS setup for cross-origin requests
 app.use(cors({
-    origin: ['https://devopscodesmith-with-multilingual-support-p21y.onrender.com', 'http://localhost:3000'],
+    origin: ['https://codesmith-with-multilingual-support.onrender.com', 'http://localhost:3000'],
     methods: ['GET', 'POST', 'OPTIONS'],
     credentials: true
 }));
