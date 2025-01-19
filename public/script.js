@@ -7,7 +7,7 @@ document.getElementById("generateCodeBtn").addEventListener("click", async () =>
     // Determine base URL based on environment
     const baseURL = window.location.hostname.includes('localhost') 
         ? 'http://localhost:3000' 
-        : 'https://devopscodesmith-with-multilingual-support.onrender.com';
+        : 'https://devopscodesmith-with-multilingual-support-p21y.onrender.com';
 
     try {
         const response = await fetch(`${baseURL}/api/code/generate-code`, {
